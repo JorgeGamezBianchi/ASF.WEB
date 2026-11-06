@@ -1,0 +1,104 @@
+---
+// Component: PrivacyModal.astro
+// Ventana emergente para Aviso Simplificado de Privacidad
+---
+
+<div class="privacy-modal-backdrop" id="privacy-modal-backdrop" aria-hidden="true">
+  <div 
+    class="privacy-modal" 
+    id="privacy-modal" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="privacy-modal-title"
+    tabindex="-1"
+  >
+    <!-- Modal Header -->
+    <div class="privacy-modal-header">
+      <div class="privacy-header-brand">
+        <div class="privacy-icon-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <div>
+          <span class="privacy-kicker">ASF SOFTLUTION S.A. DE C.V.</span>
+          <h2 class="privacy-modal-title" id="privacy-modal-title">Aviso de Privacidad Simplificado</h2>
+        </div>
+      </div>
+      <button 
+        type="button" 
+        class="privacy-modal-close" 
+        id="privacy-modal-close" 
+        aria-label="Cerrar aviso de privacidad"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="privacy-modal-body" id="privacy-modal-body">
+      <!-- Simplified Notice Text from docs/Aviso simplificado de privacidad.txt -->
+      <div class="privacy-simplified-content" id="privacy-simplified-content">
+        <div class="privacy-p-block">
+          <div class="privacy-p-icon">🏢</div>
+          <p>
+            <strong>ASF SOFTLUTION S.A. de C.V.</strong> con domicilio en H. Ayuntamiento #4-A, San Juan Xocotla, Tultepec, Edo. Mexico, Cp. 54960, es responsable del tratamiento de los datos personales de proveedores personas físicas, representantes, contactos, personal técnico y demás personas vinculadas con proveedores cuyos datos sean tratados por ASF SOFTLUTION.
+          </p>
+        </div>
+
+        <div class="privacy-p-block">
+          <div class="privacy-p-icon">📋</div>
+          <p>
+            Podremos tratar datos de identificación, contacto, fiscales, financieros y patrimoniales, comerciales, contractuales, de acceso, seguridad y cumplimiento para alta y evaluación; cotización y compra; contratación; facturación y pago; crédito y cobranza; logística, almacén y acceso a sitios; auditoría, integridad y cumplimiento; atención de garantías o reclamaciones; y defensa de derechos. Los datos financieros, patrimoniales o sensibles serán tratados con el consentimiento que legalmente corresponda, salvo excepción legal. Las finalidades secundarias de capacitación, encuestas, eventos o comunicaciones comerciales son opcionales y podrán rechazarse sin afectar la relación principal.
+          </p>
+        </div>
+
+        <div class="privacy-p-block">
+          <div class="privacy-p-icon">🔒</div>
+          <p>
+            Los datos podrán comunicarse a autoridades, instituciones financieras, sociedades del mismo grupo, clientes u operadores de sitios y prestadores de servicios, sólo cuando sea necesario y exista una base jurídica. Los proveedores que traten datos por cuenta de ASF deberán actuar bajo instrucciones documentadas. Las transferencias a terceros se sujetarán al consentimiento y a las excepciones previstas en la ley.
+          </p>
+        </div>
+
+        <div class="privacy-p-block">
+          <div class="privacy-p-icon">✉️</div>
+          <p>
+            Para limitar el uso o divulgación, revocar el consentimiento cuando proceda o ejercer derechos ARCO, escriba a <a href="mailto:contacto@softlution.com.mx" class="privacy-highlight-link">contacto@softlution.com.mx</a> o acuda a H. Ayuntamiento #4-A, San Juan Xocotla, Tultepec, Mexico, Cp. 54960. Consulte el aviso integral y sus actualizaciones en <a href="/aviso-de-privacidad" class="privacy-highlight-link">www.softlution.com.mx</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer Actions (Redirige a aviso completo + Aceptar) -->
+    <div class="privacy-modal-actions">
+      <a 
+        href="/aviso-de-privacidad" 
+        class="btn btn-outline privacy-btn-secondary" 
+        id="privacy-btn-full"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        <span>Mostrar Aviso completo</span>
+      </a>
+
+      <button 
+        type="button" 
+        class="btn btn-primary privacy-btn-primary" 
+        id="privacy-btn-accept"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>Aceptar</span>
+      </button>
+    </div>
+  </div>
+</div>

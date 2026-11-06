@@ -1,0 +1,173 @@
+---
+---
+<!-- ==========================================================================
+     SECTION 5: DEMO (Interactive SCADA Process Simulation)
+     ========================================================================== -->
+<section class="demo-section" id="demo">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        Simulador de Planta en Vivo
+      </div>
+      <h2 class="section-title">Demostración Interactiva: Sistema Automático de Bacheo</h2>
+      <p class="section-subtitle">
+        Basado en la implementación de Softlution! para Diversey-México (Planta Tlalnepantla). Experimente el
+        control en tiempo real de validación CIP, operación simultánea y reportes de consumo.
+      </p>
+    </div>
+
+    <div class="demo-wrapper">
+      <!-- Demo Top Bar with Controls -->
+      <div class="demo-control-bar">
+        <div class="demo-bar-left">
+          <div class="demo-title-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="10 8 16 12 10 16 10 8"></polygon>
+            </svg>
+            <span>SCADA Live Monitor — Diversey Bacheo L-02</span>
+          </div>
+          <select id="demo-mode-select"
+            style="background: rgba(8, 14, 28, 0.85); color: #fff; border: 1px solid var(--border-subtle); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.82rem;">
+            <option value="Bacheo Automático">Modo: Bacheo Automático</option>
+            <option value="Validación CIP">Modo: Validación y Descarga CIP</option>
+            <option value="Operación Simultánea">Modo: Operación Simultánea</option>
+            <option value="Reporte de Consumos">Modo: Reporte de Consumos</option>
+          </select>
+        </div>
+
+        <div class="demo-actions">
+          <button class="demo-btn start" id="demo-btn-start" title="Iniciar simulación">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Iniciar
+          </button>
+          <button class="demo-btn pause" id="demo-btn-pause" title="Pausar ciclo">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="6" y="4" width="4" height="16"></rect>
+              <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+            Pausa
+          </button>
+          <button class="demo-btn reset" id="demo-btn-reset" title="Restablecer valores">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+            </svg>
+            Reiniciar
+          </button>
+        </div>
+      </div>
+
+      <!-- Demo Main Visual Body -->
+      <div class="demo-body">
+        <!-- Left Side: Interactive Graphic SCADA Schematic with Tanks & Pipes -->
+        <div class="scada-schematic">
+          <div class="scada-schematic-header">
+            <span class="schematic-title">
+              Esquema de Mezclado & Lavado CIP
+            </span>
+            <span class="status-badge" style="font-size: 0.72rem;">
+              <span class="status-dot"></span> PLC ALLEN-BRADLEY VÍNCULO ACTIVO
+            </span>
+          </div>
+
+          <!-- Animated Tanks -->
+          <div class="tanks-row">
+            <!-- Tank 1: Mezclador -->
+            <div class="tank-container">
+              <div class="tank-label">Reactor Mezclador (R-101)</div>
+              <div class="tank-body">
+                <div class="tank-liquid" id="tank-mixer-liquid" style="height: 68%;"></div>
+                <div class="tank-value-overlay" id="tank-mixer-val">68%</div>
+              </div>
+              <div class="tank-status-pill">DOSIFICACIÓN</div>
+            </div>
+
+            <!-- Tank 2: Solución Cáustica CIP -->
+            <div class="tank-container">
+              <div class="tank-label">Tanque Sosa CIP (T-202)</div>
+              <div class="tank-body">
+                <div class="tank-liquid caustic" id="tank-caustic-liquid" style="height: 74%;"></div>
+                <div class="tank-value-overlay" id="tank-caustic-val">74%</div>
+              </div>
+              <div class="tank-status-pill" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">
+                RECIRCULACIÓN</div>
+            </div>
+
+            <!-- Tank 3: Enjuague Final -->
+            <div class="tank-container">
+              <div class="tank-label">Enjuague Final (T-303)</div>
+              <div class="tank-body">
+                <div class="tank-liquid rinse" id="tank-rinse-liquid" style="height: 82%;"></div>
+                <div class="tank-value-overlay" id="tank-rinse-val">82%</div>
+              </div>
+              <div class="tank-status-pill" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">STANDBY
+              </div>
+            </div>
+          </div>
+
+          <!-- Piping Flow Simulation -->
+          <div class="pipe-system">
+            <div class="pipe-fluid-animation"></div>
+          </div>
+          <div class="pipe-status-row">
+            <span>Válvula V-101: ABIERTA</span>
+            <span>Bomba P-102: 1750 RPM</span>
+            <span>Válvula CIP V-203: MODULANDO</span>
+          </div>
+        </div>
+
+        <!-- Right Side: Real-time Telemetry & Terminal Logs -->
+        <div class="demo-telemetry">
+          <div class="telemetry-card">
+            <div class="telemetry-card-title">
+              <span>Variables de Proceso</span>
+              <span style="font-size: 0.72rem; color: var(--accent-emerald);">MUESTREO: 100ms</span>
+            </div>
+            <div class="telemetry-metrics-grid">
+              <div class="telemetry-item">
+                <div class="telemetry-label">Flujo de Dosificación</div>
+                <div class="telemetry-val" id="telemetry-flow">42.5 <small>L/min</small></div>
+              </div>
+              <div class="telemetry-item">
+                <div class="telemetry-label">Temperatura Reactor</div>
+                <div class="telemetry-val" id="telemetry-temp">68.4 <small>°C</small></div>
+              </div>
+              <div class="telemetry-item">
+                <div class="telemetry-label">Conductividad CIP</div>
+                <div class="telemetry-val" id="telemetry-conduct">12.4 <small>mS/cm</small></div>
+              </div>
+              <div class="telemetry-item">
+                <div class="telemetry-label">Lote en Proceso</div>
+                <div class="telemetry-val" id="telemetry-batch" style="color: var(--accent-cyan);">#BAT-142</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="telemetry-card" style="flex-grow: 1;">
+            <div class="telemetry-card-title">
+              <span>Registro de Eventos PLC en Vivo</span>
+              <span style="font-size: 0.72rem; color: var(--text-dim);">SYSTEM DIAGNOSTIC</span>
+            </div>
+            <div class="log-terminal" id="scada-log-terminal">
+              <p><span class="timestamp">[16:40:01]</span> <span class="info">Conexión establecida con PLC
+                  ControlLogix 1756-L83E.</span></p>
+              <p><span class="timestamp">[16:40:03]</span> <span class="info">Receta 'Diversey Quat-Sanitizer'
+                  cargada correctamente.</span></p>
+              <p><span class="timestamp">[16:40:05]</span> <span class="info">Secuencia de bacheo iniciada en
+                  Reactor R-101.</span></p>
+              <p><span class="timestamp">[16:40:08]</span> <span class="info">Sensor de flujo FT-101 calibrado a
+                  cero. Bombeo activo.</span></p>
+              <p><span class="timestamp">[16:40:12]</span> <span class="info">Validación CIP en progreso:
+                  recirculación a 68.4 °C.</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

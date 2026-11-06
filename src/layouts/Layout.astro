@@ -1,0 +1,53 @@
+---
+import '../styles/styles.css';
+import BackgroundGrid from '../components/BackgroundGrid.astro';
+import TopBar from '../components/TopBar.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
+import PrivacyModal from '../components/PrivacyModal.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "ASF Softlution!",
+  description = "Líderes en automatización de procesos industriales, sistemas SCADA/HMI, control de potencia e información industrial en tiempo real con más de 20 años de experiencia. Automation Solutions Factory S.A. de C.V."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <link rel="icon" type="image/x-icon" href="/images/ASF-logo.ico" />
+  <link rel="shortcut icon" href="/images/ASF-logo.ico" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content="automatizacion industrial, PLC, SCADA, HMI, Rockwell Automation, Allen-Bradley, Schneider Electric, sistemas de control, tableros electricos, Tultitlan, Mexico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <BackgroundGrid />
+  <div class="site-header-wrapper" id="site-header-wrapper">
+    <TopBar />
+    <Header />
+  </div>
+
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <BackToTop />
+  <PrivacyModal />
+  <Footer />
+
+  <script src="../scripts/main.js"></script>
+</body>
+</html>

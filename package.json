@@ -1,0 +1,20 @@
+{
+  "name": "asf.web",
+  "version": "1.0.0",
+  "description": "Sitio web moderno tipo **Landing Page** de alto impacto para **Softlution!** (*Automation Solutions Factory S.A. de C.V.*), empresa especializada en automatización de procesos industriales, sistemas SCADA/HMI, control de potencia e información industrial en tiempo real.",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "bugs": {
+    "url": "https://github.com/JorgeGamezBianchi/ASF.WEB/issues"
+  },
+  "homepage": "https://github.com/JorgeGamezBianchi/ASF.WEB#readme",
+  "dependencies": {
+    "astro": "^7.4.7"
+  }
+}
